@@ -13,6 +13,12 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
+  const [deployer] = await hre.ethers.getSigners();
+  const balance = await deployer.getBalance();
+
+  console.log('Deploying contracts with account: ', deployer.address);
+  console.log('Account balance: ', balance.toString());
+
   // We get the contract to deploy
   const Timeline = await hre.ethers.getContractFactory("Timeline");
   const timeline = await Timeline.deploy();
